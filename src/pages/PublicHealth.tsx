@@ -3,36 +3,37 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Mail, Phone, MapPin, ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const PublicHealth = () => {
   const navigate = useNavigate();
+  const { t } = useLanguage();
 
   const healthPrograms = [
     {
-      title: "Immunization Services",
-      description: "Comprehensive vaccination programs for all age groups",
-      location: "All Primary Health Centers",
+      title: 'immunization_services',
+      description: 'immunization_description',
+      location: t('health_centers'),
     },
     {
-      title: "Maternal & Child Health",
-      description: "Prenatal care, well-baby clinics, and pediatric services",
-      location: "Women & Children's Centers",
+      title: 'maternal_child_health',
+      description: 'maternal_description',
+      location: t('health_centers'),
     },
     {
-      title: "Chronic Disease Management",
-      description: "Diabetes, hypertension, and other chronic conditions",
-      location: "Specialized Care Units",
+      title: 'chronic_disease',
+      description: 'chronic_description',
+      location: t('health_centers'),
     },
     {
-      title: "Health Education",
-      description: "Community workshops and awareness programs",
-      location: "Community Centers",
+      title: 'health_education',
+      description: 'education_description',
+      location: t('health_centers'),
     },
   ];
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
       <div className="bg-sage-500 text-white py-12">
         <div className="container">
           <Button 
@@ -41,25 +42,24 @@ const PublicHealth = () => {
             onClick={() => navigate('/')}
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to Home
+            {t('back_to_home')}
           </Button>
-          <h1 className="text-4xl font-bold mb-4">Public Health Services</h1>
+          <h1 className="text-4xl font-bold mb-4">{t('public_health_services')}</h1>
           <p className="text-lg opacity-90">
-            Comprehensive healthcare services for the community
+            {t('public_health_description')}
           </p>
         </div>
       </div>
 
-      {/* Main Content */}
       <div className="container py-12">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {healthPrograms.map((program) => (
             <Card key={program.title} className="hover:shadow-lg transition-shadow">
               <CardHeader>
-                <CardTitle>{program.title}</CardTitle>
+                <CardTitle>{t(program.title)}</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground mb-4">{program.description}</p>
+                <p className="text-muted-foreground mb-4">{t(program.description)}</p>
                 <div className="flex items-center text-sm text-sage-600">
                   <MapPin className="h-4 w-4 mr-2" />
                   {program.location}
@@ -69,14 +69,13 @@ const PublicHealth = () => {
           ))}
         </div>
 
-        {/* Contact Section */}
         <Card className="mt-12 bg-sage-50">
           <CardContent className="p-6">
             <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <h2 className="text-2xl font-semibold mb-4">Contact Public Health Department</h2>
+                <h2 className="text-2xl font-semibold mb-4">{t('contact_department')}</h2>
                 <p className="text-muted-foreground mb-6">
-                  Get in touch with our public health specialists for more information about our services and programs.
+                  {t('contact_description')}
                 </p>
               </div>
               <div className="space-y-4">
@@ -90,7 +89,7 @@ const PublicHealth = () => {
                 </div>
                 <div className="flex items-center gap-3">
                   <MapPin className="h-5 w-5 text-sage-500" />
-                  <span>Public Health Building, Manama, Bahrain</span>
+                  <span>{t('health_centers')}</span>
                 </div>
               </div>
             </div>

@@ -81,12 +81,12 @@ const Index = () => {
   ];
 
   const quickLinks = [
-    { title: "Patient Portal", icon: User },
-    { title: "Emergency Services", icon: LifeBuoy },
-    { title: "Visiting Hours", icon: Clock },
-    { title: "Find a Doctor", icon: User },
-    { title: "Health Centers", icon: MapPin },
-    { title: "Contact Us", icon: Mail },
+    { title: 'patient_portal', icon: User },
+    { title: 'emergency_services', icon: LifeBuoy },
+    { title: 'visiting_hours', icon: Clock },
+    { title: 'find_doctor', icon: User },
+    { title: 'health_centers', icon: MapPin },
+    { title: 'contact_us', icon: Mail },
   ];
 
   const upcomingEvents = [
@@ -107,7 +107,6 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <header className="bg-white dark:bg-sage-800 border-b dark:border-sage-700">
         <div className="container">
-          {/* Top Bar */}
           <div className="py-2 border-b dark:border-sage-700 flex justify-between items-center text-sm text-muted-foreground">
             <div className="flex items-center gap-4">
               <span className="flex items-center gap-1">
@@ -120,7 +119,6 @@ const Index = () => {
               </span>
             </div>
             <div className="flex items-center gap-4">
-              {/* Theme and Language Toggles */}
               <button
                 onClick={toggleTheme}
                 className="p-2 hover:bg-sage-100 dark:hover:bg-sage-700 rounded-full"
@@ -139,7 +137,6 @@ const Index = () => {
             </div>
           </div>
 
-          {/* Main Header */}
           <div className="py-4 flex justify-between items-center">
             <div className="text-2xl font-bold text-sage-600 dark:text-sage-300">MOH Bahrain</div>
             <button
@@ -159,15 +156,13 @@ const Index = () => {
         </div>
       </header>
 
-      {/* Emergency Banner */}
       <div className="bg-sage-500 text-white p-2 text-center animate-fade-down">
         <div className="container flex items-center justify-center gap-2">
           <AlertCircle className="h-4 w-4" />
-          <span>Emergency: Call 999 for immediate medical assistance</span>
+          <span>{t('emergency_call')}</span>
         </div>
       </div>
 
-      {/* Carousel */}
       <div className="relative overflow-hidden">
         <div
           className="flex transition-transform duration-500 ease-out"
@@ -206,21 +201,19 @@ const Index = () => {
         </button>
       </div>
 
-      {/* Quick Links */}
       <section className="container py-8 animate-fade-up">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
           {quickLinks.map((link) => (
             <Card key={link.title} className="hover:bg-sage-50 transition-colors cursor-pointer">
               <CardContent className="p-4 flex flex-col items-center text-center">
                 <link.icon className="h-6 w-6 text-sage-500 mb-2" />
-                <span className="text-sm font-medium">{link.title}</span>
+                <span className="text-sm font-medium">{t(link.title)}</span>
               </CardContent>
             </Card>
           ))}
         </div>
       </section>
 
-      {/* Events Calendar */}
       <section className="container py-8 animate-fade-up">
         <h2 className="text-2xl font-semibold text-center mb-8">Upcoming Events</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -239,31 +232,26 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Hero Section */}
       <section className="container py-12 lg:py-24 animate-fade-up">
         <div className="max-w-3xl mx-auto text-center space-y-6">
           <h1 className="text-4xl lg:text-6xl font-bold tracking-tight text-foreground">
-            Your Health, Our Priority
+            {t('health_priority')}
           </h1>
           <p className="text-lg text-muted-foreground">
-            Access healthcare services, find information, and stay updated with the Ministry of Health, Bahrain
+            {t('access_healthcare')}
           </p>
           <div className="flex items-center max-w-md mx-auto">
             <Input
-              placeholder="Search for services, information..."
+              placeholder={t('search_placeholder')}
               className="rounded-r-none focus-visible:ring-0 border-r-0"
             />
-            <Button
-              className="rounded-l-none bg-sage-500 hover:bg-sage-600"
-              size="icon"
-            >
+            <Button className="rounded-l-none bg-sage-500 hover:bg-sage-600" size="icon">
               <Search className="h-4 w-4" />
             </Button>
           </div>
         </div>
       </section>
 
-      {/* Quick Services */}
       <section className="container py-12 bg-sage-50 rounded-3xl animate-fade-up">
         <h2 className="text-2xl font-semibold text-center mb-8">Quick Services</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -281,7 +269,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* News & Updates */}
       <section className="container py-12 animate-fade-up">
         <h2 className="text-2xl font-semibold text-center mb-8">Latest Updates</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -302,7 +289,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Emergency Contact */}
       <section className="container py-12 mb-12 animate-fade-up">
         <Card className="bg-sage-50">
           <CardContent className="p-6 flex flex-col md:flex-row items-center justify-between">
@@ -320,27 +306,26 @@ const Index = () => {
         </Card>
       </section>
 
-      {/* Footer */}
       <footer className="bg-sage-800 text-white pt-12 pb-6">
         <div className="container">
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
             <div>
-              <h3 className="text-xl font-semibold mb-4">About MOH</h3>
+              <h3 className="text-xl font-semibold mb-4">{t('about_moh')}</h3>
               <p className="text-sage-200">
-                The Ministry of Health, Bahrain is committed to providing high-quality healthcare services to all residents.
+                {t('about_moh_description')}
               </p>
             </div>
             <div>
-              <h3 className="text-xl font-semibold mb-4">Quick Links</h3>
+              <h3 className="text-xl font-semibold mb-4">{t('quick_links')}</h3>
               <ul className="space-y-2">
-                <li><a href="#" className="text-sage-200 hover:text-white">Health Centers</a></li>
-                <li><a href="#" className="text-sage-200 hover:text-white">Medical Services</a></li>
-                <li><a href="#" className="text-sage-200 hover:text-white">Emergency Services</a></li>
-                <li><a href="#" className="text-sage-200 hover:text-white">Contact Us</a></li>
+                <li><a href="#" className="text-sage-200 hover:text-white">{t('health_centers')}</a></li>
+                <li><a href="#" className="text-sage-200 hover:text-white">{t('medical_services')}</a></li>
+                <li><a href="#" className="text-sage-200 hover:text-white">{t('emergency_services')}</a></li>
+                <li><a href="#" className="text-sage-200 hover:text-white">{t('contact_us')}</a></li>
               </ul>
             </div>
             <div>
-              <h3 className="text-xl font-semibold mb-4">Contact Info</h3>
+              <h3 className="text-xl font-semibold mb-4">{t('contact_info')}</h3>
               <ul className="space-y-2">
                 <li className="flex items-center gap-2 text-sage-200">
                   <Phone className="h-4 w-4" />
@@ -357,7 +342,7 @@ const Index = () => {
               </ul>
             </div>
             <div>
-              <h3 className="text-xl font-semibold mb-4">Follow Us</h3>
+              <h3 className="text-xl font-semibold mb-4">{t('follow_us')}</h3>
               <div className="flex gap-4">
                 <a href="#" className="text-sage-200 hover:text-white">
                   <Facebook className="h-6 w-6" />
@@ -372,7 +357,7 @@ const Index = () => {
             </div>
           </div>
           <div className="border-t border-sage-700 pt-6 text-center text-sage-300">
-            <p>&copy; 2024 Ministry of Health, Kingdom of Bahrain. All rights reserved.</p>
+            <p>{t('copyright')}</p>
           </div>
         </div>
       </footer>
