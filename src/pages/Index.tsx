@@ -23,8 +23,14 @@ import {
   LifeBuoy
 } from "lucide-react";
 import { useState, useEffect } from "react";
+import { Moon, Sun, Languages } from "lucide-react";
+import { useTheme } from "@/contexts/ThemeContext";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Index = () => {
+  const { theme, toggleTheme } = useTheme();
+  const { language, setLanguage, t } = useLanguage();
+
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -99,10 +105,10 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="bg-white border-b">
+      <header className="bg-white dark:bg-sage-800 border-b dark:border-sage-700">
         <div className="container">
           {/* Top Bar */}
-          <div className="py-2 border-b flex justify-between items-center text-sm text-muted-foreground">
+          <div className="py-2 border-b dark:border-sage-700 flex justify-between items-center text-sm text-muted-foreground">
             <div className="flex items-center gap-4">
               <span className="flex items-center gap-1">
                 <Phone className="h-4 w-4" />
@@ -114,6 +120,19 @@ const Index = () => {
               </span>
             </div>
             <div className="flex items-center gap-4">
+              {/* Theme and Language Toggles */}
+              <button
+                onClick={toggleTheme}
+                className="p-2 hover:bg-sage-100 dark:hover:bg-sage-700 rounded-full"
+              >
+                {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+              </button>
+              <button
+                onClick={() => setLanguage(language === 'en' ? 'ar' : 'en')}
+                className="p-2 hover:bg-sage-100 dark:hover:bg-sage-700 rounded-full"
+              >
+                <Languages className="h-4 w-4" />
+              </button>
               <Facebook className="h-4 w-4" />
               <Twitter className="h-4 w-4" />
               <Instagram className="h-4 w-4" />
@@ -122,19 +141,19 @@ const Index = () => {
 
           {/* Main Header */}
           <div className="py-4 flex justify-between items-center">
-            <div className="text-2xl font-bold text-sage-600">MOH Bahrain</div>
+            <div className="text-2xl font-bold text-sage-600 dark:text-sage-300">MOH Bahrain</div>
             <button
               className="lg:hidden"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               <Menu className="h-6 w-6" />
             </button>
-            <nav className={`lg:flex gap-6 ${isMenuOpen ? 'absolute top-full left-0 right-0 bg-white border-b p-4 shadow-lg' : 'hidden'} lg:relative lg:bg-transparent lg:border-none lg:shadow-none lg:p-0`}>
-              <a href="/" className="block py-2 hover:text-sage-600">Home</a>
-              <a href="#" className="block py-2 hover:text-sage-600">Services</a>
-              <a href="/public-health" className="block py-2 hover:text-sage-600">Public Health</a>
-              <a href="#" className="block py-2 hover:text-sage-600">About Us</a>
-              <a href="#" className="block py-2 hover:text-sage-600">Contact</a>
+            <nav className={`lg:flex gap-6 ${isMenuOpen ? 'absolute top-full left-0 right-0 bg-white dark:bg-sage-800 border-b p-4 shadow-lg' : 'hidden'} lg:relative lg:bg-transparent lg:border-none lg:shadow-none lg:p-0`}>
+              <a href="/" className="block py-2 hover:text-sage-600 dark:text-sage-200 dark:hover:text-white">{t('home')}</a>
+              <a href="#" className="block py-2 hover:text-sage-600 dark:text-sage-200 dark:hover:text-white">{t('services')}</a>
+              <a href="/public-health" className="block py-2 hover:text-sage-600 dark:text-sage-200 dark:hover:text-white">{t('public_health')}</a>
+              <a href="#" className="block py-2 hover:text-sage-600 dark:text-sage-200 dark:hover:text-white">{t('about_us')}</a>
+              <a href="#" className="block py-2 hover:text-sage-600 dark:text-sage-200 dark:hover:text-white">{t('contact')}</a>
             </nav>
           </div>
         </div>
