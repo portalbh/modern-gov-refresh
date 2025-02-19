@@ -99,7 +99,6 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
       <header className="bg-white border-b">
         <div className="container">
           {/* Top Bar */}
@@ -131,9 +130,9 @@ const Index = () => {
               <Menu className="h-6 w-6" />
             </button>
             <nav className={`lg:flex gap-6 ${isMenuOpen ? 'absolute top-full left-0 right-0 bg-white border-b p-4 shadow-lg' : 'hidden'} lg:relative lg:bg-transparent lg:border-none lg:shadow-none lg:p-0`}>
-              <a href="#" className="block py-2 hover:text-sage-600">Home</a>
+              <a href="/" className="block py-2 hover:text-sage-600">Home</a>
               <a href="#" className="block py-2 hover:text-sage-600">Services</a>
-              <a href="#" className="block py-2 hover:text-sage-600">Health Centers</a>
+              <a href="/public-health" className="block py-2 hover:text-sage-600">Public Health</a>
               <a href="#" className="block py-2 hover:text-sage-600">About Us</a>
               <a href="#" className="block py-2 hover:text-sage-600">Contact</a>
             </nav>
