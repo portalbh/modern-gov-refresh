@@ -1,11 +1,51 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { Search, Phone, Hospital, Calendar, FileText, Heart, AlertCircle } from "lucide-react";
+import {
+  Search,
+  Phone,
+  Hospital,
+  Calendar,
+  FileText,
+  Heart,
+  AlertCircle,
+  Mail,
+  Facebook,
+  Twitter,
+  Instagram,
+  ChevronRight,
+  ChevronLeft,
+  Menu,
+  Clock,
+  MapPin,
+  User,
+  LifeBuoy
+} from "lucide-react";
+import { useState, useEffect } from "react";
 
 const Index = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const slides = [
+    {
+      image: "https://picsum.photos/1200/400?random=1",
+      title: "COVID-19 Vaccination Drive",
+      description: "Get vaccinated at your nearest health center"
+    },
+    {
+      image: "https://picsum.photos/1200/400?random=2",
+      title: "Mental Health Awareness Month",
+      description: "Join our awareness sessions"
+    },
+    {
+      image: "https://picsum.photos/1200/400?random=3",
+      title: "New Medical Center Opening",
+      description: "State-of-the-art facilities in Manama"
+    }
+  ];
+
   const quickServices = [
     { icon: Calendar, title: "Book Appointment", description: "Schedule a visit with our healthcare providers" },
     { icon: Hospital, title: "Find Facility", description: "Locate nearest healthcare centers" },
@@ -34,8 +74,73 @@ const Index = () => {
     },
   ];
 
+  const quickLinks = [
+    { title: "Patient Portal", icon: User },
+    { title: "Emergency Services", icon: LifeBuoy },
+    { title: "Visiting Hours", icon: Clock },
+    { title: "Find a Doctor", icon: User },
+    { title: "Health Centers", icon: MapPin },
+    { title: "Contact Us", icon: Mail },
+  ];
+
+  const upcomingEvents = [
+    { date: "Mar 20", title: "Diabetes Awareness Workshop", location: "Manama Health Center" },
+    { date: "Mar 22", title: "Blood Donation Drive", location: "Riffa Health Center" },
+    { date: "Mar 25", title: "Pediatric Health Day", location: "Children's Hospital" },
+    { date: "Mar 28", title: "Mental Health Seminar", location: "Medical Complex" },
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [slides.length]);
+
   return (
     <div className="min-h-screen bg-background">
+      {/* Header */}
+      <header className="bg-white border-b">
+        <div className="container">
+          {/* Top Bar */}
+          <div className="py-2 border-b flex justify-between items-center text-sm text-muted-foreground">
+            <div className="flex items-center gap-4">
+              <span className="flex items-center gap-1">
+                <Phone className="h-4 w-4" />
+                80001234
+              </span>
+              <span className="flex items-center gap-1">
+                <Mail className="h-4 w-4" />
+                info@moh.gov.bh
+              </span>
+            </div>
+            <div className="flex items-center gap-4">
+              <Facebook className="h-4 w-4" />
+              <Twitter className="h-4 w-4" />
+              <Instagram className="h-4 w-4" />
+            </div>
+          </div>
+
+          {/* Main Header */}
+          <div className="py-4 flex justify-between items-center">
+            <div className="text-2xl font-bold text-sage-600">MOH Bahrain</div>
+            <button
+              className="lg:hidden"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              <Menu className="h-6 w-6" />
+            </button>
+            <nav className={`lg:flex gap-6 ${isMenuOpen ? 'absolute top-full left-0 right-0 bg-white border-b p-4 shadow-lg' : 'hidden'} lg:relative lg:bg-transparent lg:border-none lg:shadow-none lg:p-0`}>
+              <a href="#" className="block py-2 hover:text-sage-600">Home</a>
+              <a href="#" className="block py-2 hover:text-sage-600">Services</a>
+              <a href="#" className="block py-2 hover:text-sage-600">Health Centers</a>
+              <a href="#" className="block py-2 hover:text-sage-600">About Us</a>
+              <a href="#" className="block py-2 hover:text-sage-600">Contact</a>
+            </nav>
+          </div>
+        </div>
+      </header>
+
       {/* Emergency Banner */}
       <div className="bg-sage-500 text-white p-2 text-center animate-fade-down">
         <div className="container flex items-center justify-center gap-2">
@@ -43,6 +148,78 @@ const Index = () => {
           <span>Emergency: Call 999 for immediate medical assistance</span>
         </div>
       </div>
+
+      {/* Carousel */}
+      <div className="relative overflow-hidden">
+        <div
+          className="flex transition-transform duration-500 ease-out"
+          style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+        >
+          {slides.map((slide, index) => (
+            <div
+              key={index}
+              className="min-w-full relative"
+            >
+              <img
+                src={slide.image}
+                alt={slide.title}
+                className="w-full h-[400px] object-cover"
+              />
+              <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                <div className="text-white text-center">
+                  <h2 className="text-4xl font-bold mb-4">{slide.title}</h2>
+                  <p className="text-xl">{slide.description}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <button
+          onClick={() => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length)}
+          className="absolute left-4 top-1/2 -translate-y-1/2 bg-white bg-opacity-50 p-2 rounded-full"
+        >
+          <ChevronLeft className="h-6 w-6" />
+        </button>
+        <button
+          onClick={() => setCurrentSlide((prev) => (prev + 1) % slides.length)}
+          className="absolute right-4 top-1/2 -translate-y-1/2 bg-white bg-opacity-50 p-2 rounded-full"
+        >
+          <ChevronRight className="h-6 w-6" />
+        </button>
+      </div>
+
+      {/* Quick Links */}
+      <section className="container py-8 animate-fade-up">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          {quickLinks.map((link) => (
+            <Card key={link.title} className="hover:bg-sage-50 transition-colors cursor-pointer">
+              <CardContent className="p-4 flex flex-col items-center text-center">
+                <link.icon className="h-6 w-6 text-sage-500 mb-2" />
+                <span className="text-sm font-medium">{link.title}</span>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      {/* Events Calendar */}
+      <section className="container py-8 animate-fade-up">
+        <h2 className="text-2xl font-semibold text-center mb-8">Upcoming Events</h2>
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {upcomingEvents.map((event) => (
+            <Card key={event.title} className="hover:shadow-md transition-shadow">
+              <CardContent className="p-6">
+                <div className="text-sage-500 font-semibold mb-2">{event.date}</div>
+                <h3 className="font-semibold mb-2">{event.title}</h3>
+                <div className="text-sm text-muted-foreground flex items-center gap-2">
+                  <MapPin className="h-4 w-4" />
+                  {event.location}
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
 
       {/* Hero Section */}
       <section className="container py-12 lg:py-24 animate-fade-up">
@@ -124,6 +301,63 @@ const Index = () => {
           </CardContent>
         </Card>
       </section>
+
+      {/* Footer */}
+      <footer className="bg-sage-800 text-white pt-12 pb-6">
+        <div className="container">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+            <div>
+              <h3 className="text-xl font-semibold mb-4">About MOH</h3>
+              <p className="text-sage-200">
+                The Ministry of Health, Bahrain is committed to providing high-quality healthcare services to all residents.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold mb-4">Quick Links</h3>
+              <ul className="space-y-2">
+                <li><a href="#" className="text-sage-200 hover:text-white">Health Centers</a></li>
+                <li><a href="#" className="text-sage-200 hover:text-white">Medical Services</a></li>
+                <li><a href="#" className="text-sage-200 hover:text-white">Emergency Services</a></li>
+                <li><a href="#" className="text-sage-200 hover:text-white">Contact Us</a></li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold mb-4">Contact Info</h3>
+              <ul className="space-y-2">
+                <li className="flex items-center gap-2 text-sage-200">
+                  <Phone className="h-4 w-4" />
+                  80001234
+                </li>
+                <li className="flex items-center gap-2 text-sage-200">
+                  <Mail className="h-4 w-4" />
+                  info@moh.gov.bh
+                </li>
+                <li className="flex items-center gap-2 text-sage-200">
+                  <MapPin className="h-4 w-4" />
+                  Manama, Bahrain
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold mb-4">Follow Us</h3>
+              <div className="flex gap-4">
+                <a href="#" className="text-sage-200 hover:text-white">
+                  <Facebook className="h-6 w-6" />
+                </a>
+                <a href="#" className="text-sage-200 hover:text-white">
+                  <Twitter className="h-6 w-6" />
+                </a>
+                <a href="#" className="text-sage-200 hover:text-white">
+                  <Instagram className="h-6 w-6" />
+                </a>
+              </div>
+            </div>
+          </div>
+          <div className="border-t border-sage-700 pt-6 text-center text-sage-300">
+            <p>&copy; 2024 Ministry of Health, Kingdom of Bahrain. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };
