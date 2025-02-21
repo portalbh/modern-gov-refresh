@@ -1,4 +1,4 @@
-# Welcome to your Lovable project
+# Modern Gov Refresh
 
 ## Project info
 
@@ -52,12 +52,9 @@ npm run dev
 
 ## What technologies are used for this project?
 
-This project is built with .
+This project is built with HTML, CSS, and JavaScript.
 
 - Vite
-- TypeScript
-- React
-- shadcn-ui
 - Tailwind CSS
 
 ## How can I deploy this project?
