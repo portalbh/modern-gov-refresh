@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import Index from "./pages/Index";
+import Services from "./pages/Services";
 import PublicHealth from "./pages/PublicHealth";
 import NotFound from "./pages/NotFound";
 
@@ -22,6 +23,7 @@ const App = () => (
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Index />} />
+              <Route path="/services" element={<Services />} />
               <Route path="/public-health" element={<PublicHealth />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
