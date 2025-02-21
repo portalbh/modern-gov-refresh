@@ -50,6 +50,25 @@ npm run dev
 - Click on "New codespace" to launch a new Codespace environment.
 - Edit files directly within the Codespace and commit and push your changes once you're done.
 
+## Fixing Icon Size and Styles
+
+If the icons are too large or the styles are not correct, you can adjust the CSS settings. Follow these steps:
+
+1. Open the `styles.css` file located in the `src` directory.
+2. Locate the CSS rules for the icons and adjust the `width`, `height`, and other style properties as needed.
+
+Example:
+```css
+/* filepath: /c:/CodeBase/Projects/www/mohbahrain/modern-gov-refresh/src/styles.css */
+.icon {
+    width: 24px; /* Adjust the size as needed */
+    height: 24px; /* Adjust the size as needed */
+    /* Add or modify other styles as needed */
+}
+```
+
+3. Save the changes and restart the development server to see the updates.
+
 ## What technologies are used for this project?
 
 This project is built with HTML, CSS, and JavaScript.

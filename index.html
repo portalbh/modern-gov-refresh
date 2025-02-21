@@ -6,31 +6,7 @@
     <title>Modern Gov Refresh</title>
     <meta name="description" content="Ministry of Health Bahrain" />
     <link rel="stylesheet" href="src/index.css" />
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
-    <script>
-      tailwind.config = {
-        darkMode: 'class',
-        theme: {
-          extend: {
-            colors: {
-              sage: {
-                50: "#f6f7f6",
-                100: "#e3e7e3",
-                200: "#c7d1c7",
-                300: "#a3b3a3",
-                400: "#7d917d",
-                500: "#637563",
-                600: "#4d5c4d",
-                700: "#404c40",
-                800: "#363e36",
-                900: "#2f352f",
-              }
-            }
-          }
-        }
-      }
-    </script>
   </head>
   <body class="bg-white dark:bg-sage-900">
     <div id="root">
@@ -135,6 +111,18 @@
         <div class="swiper-button-next"></div>
         <div class="swiper-button-prev"></div>
       </div>
+
+      <!-- Latest News -->
+      <section class="container mx-auto px-4 py-12">
+        <h2 class="text-2xl font-semibold text-center mb-8" data-translate="latest_news">Latest News</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="bg-white dark:bg-sage-800 p-6 rounded-lg shadow">
+            <h3 class="font-semibold mb-2">New Health Regulations</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-300">Effective from next month, new health regulations will be implemented...</p>
+          </div>
+          <!-- More news items -->
+        </div>
+      </section>
 
       <!-- Quick Links -->
       <section class="container mx-auto px-4 py-12">
@@ -241,5 +229,11 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
     <script src="translations.js"></script>
     <script src="main.js"></script>
+    <script>
+      document.getElementById('menuToggle').addEventListener('click', function() {
+        const mainNav = document.getElementById('mainNav');
+        mainNav.classList.toggle('hidden');
+      });
+    </script>
   </body>
 </html>
