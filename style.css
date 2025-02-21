@@ -49,16 +49,25 @@
 .swiper-button-next,
 .swiper-button-prev {
   color: white !important;
-  padding: 30px;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.5);
   border-radius: 50%;
   width: 40px !important;
   height: 40px !important;
+  transform: translateY(-50%);
 }
 
 .swiper-button-next:after,
 .swiper-button-prev:after {
   font-size: 20px !important;
+  font-weight: bold;
+}
+
+.swiper-button-next {
+  right: 20px !important;
+}
+
+.swiper-button-prev {
+  left: 20px !important;
 }
 
 .swiper-pagination-bullet {

@@ -11,6 +11,13 @@ function updateThemeIcon() {
   }
 }
 
+function updateLanguageDisplay() {
+  const langDisplay = document.getElementById('currentLang');
+  if (langDisplay) {
+    langDisplay.textContent = currentLanguage.toUpperCase();
+  }
+}
+
 function toggleTheme() {
   currentTheme = currentTheme === 'light' ? 'dark' : 'light';
   document.documentElement.classList.remove('light', 'dark');
@@ -25,6 +32,7 @@ function setLanguage(lang) {
   document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
   document.documentElement.lang = lang;
   localStorage.setItem('language', lang);
+  updateLanguageDisplay();
   updateTranslations();
 }
 
@@ -69,6 +77,11 @@ function initSwiper() {
       nextEl: ".swiper-button-next",
       prevEl: ".swiper-button-prev",
     },
+    on: {
+      init: function () {
+        console.log('Swiper initialized');
+      },
+    }
   });
 }
 
@@ -80,9 +93,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // Set initial theme
   document.documentElement.classList.add(currentTheme);
   updateThemeIcon();
-
+  
   // Set initial language
   setLanguage(currentLanguage);
+  updateLanguageDisplay();
 
   // Event Listeners
   const themeToggle = document.getElementById('themeToggle');
