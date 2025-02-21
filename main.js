@@ -1,4 +1,3 @@
-
 // Theme Management
 let currentTheme = localStorage.getItem('theme') || 'light';
 let currentLanguage = localStorage.getItem('language') || 'en';
@@ -52,8 +51,32 @@ function toggleMenu() {
   nav.classList.toggle('block');
 }
 
+// Initialize Swiper
+function initSwiper() {
+  new Swiper(".mySwiper", {
+    slidesPerView: 1,
+    spaceBetween: 30,
+    loop: true,
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  });
+}
+
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
+  // Initialize Swiper
+  initSwiper();
+
   // Set initial theme
   document.documentElement.classList.add(currentTheme);
   updateThemeIcon();

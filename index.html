@@ -8,6 +8,7 @@
     <meta name="description" content="Ministry of Health Bahrain" />
     <link rel="stylesheet" href="style.css" />
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
     <script>
       tailwind.config = {
         darkMode: 'class',
@@ -32,9 +33,20 @@
       }
     </script>
   </head>
-  <body>
+  <body class="bg-white dark:bg-sage-900">
     <div id="root">
-      <header class="bg-white dark:bg-sage-800 border-b dark:border-sage-700">
+      <!-- Top Bar -->
+      <div class="bg-sage-500 text-white p-2 text-center animate-fade-down">
+        <div class="container mx-auto px-4 flex items-center justify-center gap-2">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+          </svg>
+          <span data-translate="emergency_call"></span>
+        </div>
+      </div>
+
+      <!-- Header -->
+      <header class="bg-white dark:bg-sage-800 border-b dark:border-sage-700 sticky top-0 z-50">
         <div class="container mx-auto px-4">
           <!-- Top Bar -->
           <div class="py-2 border-b dark:border-sage-700 flex justify-between items-center text-sm text-gray-600">
@@ -85,46 +97,145 @@
         </div>
       </header>
 
-      <!-- Hero Section -->
-      <section class="container mx-auto px-4 py-12 lg:py-24">
-        <div class="max-w-3xl mx-auto text-center space-y-6">
-          <h1 class="text-4xl lg:text-6xl font-bold tracking-tight" data-translate="health_priority">Your Health, Our Priority</h1>
-          <p class="text-lg text-gray-600" data-translate="access_healthcare">Access healthcare services, find information, and stay updated with the Ministry of Health, Bahrain</p>
-          <div class="flex items-center max-w-md mx-auto">
-            <input type="text" class="w-full px-4 py-2 rounded-l-lg border focus:outline-none focus:ring-2 focus:ring-sage-500" data-translate-placeholder="search_placeholder" placeholder="Search for services, information...">
-            <button class="px-4 py-2 bg-sage-500 text-white rounded-r-lg hover:bg-sage-600">
-              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="11" cy="11" r="8"></circle>
-                <path d="m21 21-4.35-4.35"></path>
-              </svg>
-            </button>
+      <!-- Carousel -->
+      <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide relative h-[400px]">
+            <img src="https://picsum.photos/1200/400?random=1" alt="Slide 1" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+              <div class="text-white text-center">
+                <h2 class="text-4xl font-bold mb-4">COVID-19 Vaccination Drive</h2>
+                <p class="text-xl">Get vaccinated at your nearest health center</p>
+              </div>
+            </div>
           </div>
+          <div class="swiper-slide relative h-[400px]">
+            <img src="https://picsum.photos/1200/400?random=2" alt="Slide 2" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+              <div class="text-white text-center">
+                <h2 class="text-4xl font-bold mb-4">Mental Health Awareness Month</h2>
+                <p class="text-xl">Join our awareness sessions</p>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide relative h-[400px]">
+            <img src="https://picsum.photos/1200/400?random=3" alt="Slide 3" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+              <div class="text-white text-center">
+                <h2 class="text-4xl font-bold mb-4">New Medical Center Opening</h2>
+                <p class="text-xl">State-of-the-art facilities in Manama</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+      </div>
+
+      <!-- Quick Links -->
+      <section class="container mx-auto px-4 py-12">
+        <h2 class="text-2xl font-semibold text-center mb-8" data-translate="quick_services">Quick Services</h2>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+          <div class="p-6 bg-white dark:bg-sage-800 rounded-lg shadow-sm hover:shadow-lg transition-all cursor-pointer">
+            <svg class="w-8 h-8 text-sage-500 mb-4 mx-auto" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M19 4H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"></path>
+              <path d="M16 2v4"></path>
+              <path d="M8 2v4"></path>
+              <path d="M3 10h18"></path>
+            </svg>
+            <h3 class="text-center font-medium" data-translate="book_appointment">Book Appointment</h3>
+          </div>
+          <!-- More quick links -->
         </div>
       </section>
 
-      <!-- Quick Links -->
-      <section class="container mx-auto px-4 py-8">
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4" id="quickLinks">
-          <!-- Quick links will be populated by JavaScript -->
+      <!-- Events Calendar -->
+      <section class="container mx-auto px-4 py-12 bg-sage-50 dark:bg-sage-800/50 rounded-3xl">
+        <h2 class="text-2xl font-semibold text-center mb-8" data-translate="upcoming_events">Upcoming Events</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="bg-white dark:bg-sage-800 p-6 rounded-lg shadow">
+            <div class="text-sage-500 font-semibold mb-2">Mar 20</div>
+            <h3 class="font-semibold mb-2">Diabetes Awareness Workshop</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-300">Manama Health Center</p>
+          </div>
+          <!-- More events -->
         </div>
       </section>
 
       <!-- Footer -->
-      <footer class="bg-sage-800 text-white pt-12 pb-6">
+      <footer class="bg-sage-800 text-white mt-12 pt-12 pb-6">
         <div class="container mx-auto px-4">
           <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
             <div>
               <h3 class="text-xl font-semibold mb-4" data-translate="about_moh">About MOH</h3>
-              <p class="text-sage-200" data-translate="about_moh_description">The Ministry of Health, Bahrain is committed to providing high-quality healthcare services to all residents.</p>
+              <p class="text-sage-200" data-translate="about_moh_description"></p>
             </div>
-            <!-- Additional footer sections -->
+            <div>
+              <h3 class="text-xl font-semibold mb-4" data-translate="quick_links">Quick Links</h3>
+              <ul class="space-y-2">
+                <li><a href="#" class="text-sage-200 hover:text-white" data-translate="health_centers"></a></li>
+                <li><a href="#" class="text-sage-200 hover:text-white" data-translate="medical_services"></a></li>
+                <li><a href="#" class="text-sage-200 hover:text-white" data-translate="emergency_services"></a></li>
+                <li><a href="#" class="text-sage-200 hover:text-white" data-translate="contact_us"></a></li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold mb-4" data-translate="contact_info">Contact Info</h3>
+              <ul class="space-y-2">
+                <li class="flex items-center gap-2 text-sage-200">
+                  <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                  </svg>
+                  80001234
+                </li>
+                <li class="flex items-center gap-2 text-sage-200">
+                  <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                  </svg>
+                  info@moh.gov.bh
+                </li>
+                <li class="flex items-center gap-2 text-sage-200">
+                  <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg>
+                  Manama, Bahrain
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold mb-4" data-translate="follow_us">Follow Us</h3>
+              <div class="flex gap-4">
+                <a href="#" class="text-sage-200 hover:text-white">
+                  <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                  </svg>
+                </a>
+                <a href="#" class="text-sage-200 hover:text-white">
+                  <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+                  </svg>
+                </a>
+                <a href="#" class="text-sage-200 hover:text-white">
+                  <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                  </svg>
+                </a>
+              </div>
+            </div>
           </div>
           <div class="border-t border-sage-700 pt-6 text-center text-sage-300">
-            <p data-translate="copyright">© 2024 Ministry of Health, Kingdom of Bahrain. All rights reserved.</p>
+            <p data-translate="copyright"></p>
           </div>
         </div>
       </footer>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
     <script src="translations.js"></script>
     <script src="main.js"></script>
   </body>
